@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ user['username'] }}'s Profile</h2>
+    <p><strong>Name:</strong> {{ user['name'] or 'Not provided' }}</p>
+    <p><strong>Bio:</strong> {{ user['bio'] or 'No bio available' }}</p>
+
+    <h3>Posts by {{ user['username'] }}</h3>
+    {% for post in posts %}
+        <article>
+            <h4><a href="{{ url_for('post', post_id=post['id']) }}">{{ post['title'] }}</a></h4>
+            <p>{{ post['content']|truncate(100) }}</p>
+            <small>Posted on {{ post['created'] }}</small>
+        </article>
+    {% endfor %}
+{% endblock %}

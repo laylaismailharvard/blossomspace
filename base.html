@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blossom Space{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    {% if not current_user.is_authenticated %}
+    <div class="alert alert-info text-center" role="alert">
+        Please <a href="{{ url_for('login') }}" class="alert-link">log in</a> or <a href="{{ url_for('register') }}" class="alert-link">register</a> to create an account and start posting.
+    </div>
+    {% endif %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <h1 class="navbar-brand mb-0"><a href="{{ url_for('index') }}" class="text-decoration-none">Blossom Space</a></h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if current_user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('create_post') }}" title="New Post"><i class="fas fa-plus-circle"></i><span class="sr-only">New Post</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('profile') }}" title="Profile"><i class="fas fa-user"></i><span class="sr-only">Profile</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('saved_posts') }}" title="Saved Posts"><i class="fas fa-bookmark"></i><span class="sr-only">Saved Posts</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}" title="Logout"><i class="fas fa-sign-out-alt"></i><span class="sr-only">Logout</span></a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}" title="Login"><i class="fas fa-sign-in-alt"></i><span class="sr-only">Login</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}" title="Register"><i class="fas fa-user-plus"></i><span class="sr-only">Register</span></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <form method="post" action="{{ url_for('search') }}" class="d-flex">
+                    <input class="form-control me-2 search-bar" type="search" name="keyword" placeholder="Search posts or users..." style="width: 300px;" required>
+                    <button class="btn btn-outline-pink" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Latest Posts</h2>
+    {% for post in posts %}
+        <article>
+            <h3>
+                <a href="{{ url_for('post', post_id=post['id']) }}">{{ post['title'] }}</a>
+                by <a href="{{ url_for('user_profile', user_id=post['author_id']) }}">{{ post['username'] }}</a>
+            </h3>
+            <p>{{ post['content']|truncate(100) }}</p>
+            <small>Posted on {{ post['created'] }}</small>
+            {% if current_user.is_authenticated %}
+                {% set saved = post.id|saved_by_user(current_user.id) %}
+                {% if not saved %}
+                    <form action="{{ url_for('save_post', post_id=post['id']) }}" method="POST" class="mt-2">
+                        <button type="submit" class="btn btn-outline-pink">Save Post</button>
+                    </form>
+                {% else %}
+                    <p class="text-muted mt-2">Post saved</p>
+                {% endif %}
+            {% endif %}
+        </article>
+    {% endfor %}
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+            {% if page > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('index', page=page-1) }}">Previous</a>
+                </li>
+            {% endif %}
+
+            {% for p in range(1, total_pages + 1) %}
+                <li class="page-item {% if p == page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('index', page=p) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+
+            {% if page < total_pages %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('index', page=page+1) }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}

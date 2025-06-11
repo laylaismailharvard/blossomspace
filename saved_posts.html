@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Your Saved Posts</h2>
+    {% for post in posts %}
+        <article>
+            <h3><a href="{{ url_for('post', post_id=post['id']) }}">{{ post['title'] }}</a></h3>
+            <p>{{ post['content']|truncate(100) }}</p>
+            <small>Posted by {{ post['username'] }} on {{ post['created'] }}</small>
+        </article>
+    {% endfor %}
+{% endblock %}

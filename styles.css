@@ -1,0 +1,129 @@
+:root {
+    --pink-lightest: #FFF0F5;
+    --pink-light: #FFD1DC;
+    --pink-medium: #FFB6C1;
+    --pink-dark: #FF69B4;
+    --pink-darkest: #FF1493;
+    --soft-white: #FFFFFF;
+    --accent-brown: #A67A5B;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--pink-lightest);
+    color: var(--accent-brown);
+}
+
+.navbar {
+    background-color: var(--pink-light);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    color: var(--pink-darkest);
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.nav-link {
+    color: var(--pink-dark);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--pink-darkest);
+}
+
+main {
+    background-color: var(--soft-white);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: var(--pink-darkest);
+}
+
+.btn-outline-pink {
+    color: var(--pink-dark);
+    border-color: var(--pink-dark);
+    transition: all 0.2s ease;
+}
+
+.btn-outline-pink:hover {
+    background-color: var(--pink-dark);
+    color: var(--soft-white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+footer {
+    background-color: var(--pink-light);
+    color: var(--pink-darkest);
+}
+
+/* Custom styles for forms */
+.form-control:focus {
+    border-color: var(--pink-medium);
+    box-shadow: 0 0 0 0.2rem rgba(255, 182, 193, 0.25);
+}
+
+/* Override Bootstrap's blue focus styles */
+.form-control:focus,
+.btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 105, 180, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--pink-dark);
+    border-color: var(--pink-dark);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--pink-darkest);
+    border-color: var(--pink-darkest);
+}
+
+a {
+    color: var(--pink-dark);
+}
+
+a:hover {
+    color: var(--pink-darkest);
+}
+
+article {
+    position: relative;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+article {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.search-bar {
+    width: 300px;
+}
+
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+

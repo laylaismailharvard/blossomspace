@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Search Results for "{{ keyword }}"</h2>
+    {% for post in posts %}
+        <article>
+            <h3><a href="{{ url_for('post', post_id=post['id']) }}">{{ post['title']|highlight(keyword)|safe }}</a></h3>
+            <p>{{ post['content']|truncate(200)|highlight(keyword)|safe }}</p>
+            <small>Posted by {{ post['username'] }} on {{ post['created'] }}</small>
+        </article>
+    {% endfor %}
+{% endblock %}
